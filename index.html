@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N11 Odev</title>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+        <div id="product-detail" class="bg-white shadow w-[1024px] p-6">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <img 
+                        :src="mainImage" 
+                        class="w-full" />
+                    <product-image-area
+                        :prev="prevBtn"
+                        :next="nextBtn">
+                        <img 
+                            v-for="(image, index) in productImages" 
+                            :key="index" 
+                            :src="image" 
+                            :class="['w-full cursor-pointer', {'border-black border-2':index===currentImageIndex}]" 
+                            @click="changeImage(index)" />
+                    </product-image-area>
+                </div>
+                <div>
+                   <div class="p-2">
+                    <product-title :title="product.productTitle"></product-title>
+                    <product-info
+                        :prev="prevBtn"
+                        :next="nextBtn"
+                        :min="baremMin"
+                        :max="baremMax"
+                        :quantity="minQuantity"
+                        >
+                    </product-info>
+                    <attribute-area 
+                        v-for="(selectableAttribute, index) in product.selectableAttributes" 
+                        :key="index" 
+                        :title="selectableAttribute.name">
+                        <attribute-button 
+                            v-for="(attribute, index) in selectableAttribute.values" 
+                            :key="index" 
+                            :attribute="selectableAttribute" 
+                            :text="attribute" 
+                            :checked="attributePicker(selectableAttribute, attribute)"
+                            @select-attr="selectAttr" />
+                    </attribute-area>
+                   </div>
+                   <barem-area 
+                        v-if="product.baremList?.length>0"
+                        @set-barem="setBarem"
+                        :barems="product.baremList"
+                        :min="minCount"
+                        :max="maxCount"
+                        :count="count">
+                    </barem-area>
+                    <price-area 
+                        :variant="hasVariant"
+                        :amount="totalAmount"></price-area>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js"></script>
+    <script src="js/components/AttributeButton.js"></script>
+    <script src="js/components/AttributeArea.js"></script>
+    <script src="js/components/BaremArea.js"></script>
+    <script src="js/components/PriceArea.js"></script>
+    <script src="js/components/ProductTitle.js"></script>
+    <script src="js/components/ProductInfo.js"></script>
+    <script src="js/components/ProductImageArea.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
