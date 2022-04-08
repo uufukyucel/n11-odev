@@ -8,8 +8,8 @@
 </head>
 <body class="bg-gray-100 h-screen flex items-center justify-center">
 
-        <div id="product-detail" class="bg-white shadow w-[1024px] p-6">
-            <div class="grid grid-cols-2 gap-4">
+        <div id="product-detail" class="bg-white shadow w-full p-6 sm:w-[1024px]">
+            <div class="sm:grid sm:grid-cols-2 flex flex-col gap-4">
                 <div>
                     <img 
                         :src="mainImage" 
@@ -58,6 +58,7 @@
                         :count="count">
                     </barem-area>
                     <price-area 
+                        :basket="showBasket"
                         :variant="hasVariant"
                         :amount="totalAmount"></price-area>
                 </div>

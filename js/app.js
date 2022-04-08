@@ -150,6 +150,11 @@ const productDetailApp = new Vue({
             this.baremMin = min;
             this.baremMax = max;
         },
+        showBasket: function(){
+            console.log('attributes:', this.selectedAttributes);
+            console.log('barem:', this.currentBarem);
+            console.log('productId:', this.variantId);
+        }
     },
     watch: {
         currentImageIndex: function(){
