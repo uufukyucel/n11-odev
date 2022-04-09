@@ -37,8 +37,12 @@ Vue.component('barem-area', {
                 <span>:</span>
             </span>
             <div class="w-9/12 flex justify-between">
-                <div>
+                <div class="flex gap-2">
+                    <div class="flex">
+                    <button class="bg-gray-200 border-2 w-6" @click="count > 120 ? count-- : null">-</button>
                     <input type="number" :min="min" class="w-16 border-gray-300 border-2 rounded-sm" v-model="count">
+                    <button class="bg-gray-200 border-2 w-6" @click="count++">+</button>
+                    </div>
                     <span>Adet</span>
                 </div>
                 <span v-show="variant" class="text-sm text-green-500">Stok Adedi: <b>{{max}}</b></span>
