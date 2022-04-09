@@ -1,5 +1,5 @@
 Vue.component('barem-area', {
-    props: ['barems', 'count', 'currentBarem', 'min', 'max'],
+    props: ['barems', 'count', 'currentBarem', 'min', 'max', 'variant'],
     methods: {
         setBarem: function(barem, clicked) {
             this.$emit('set-barem', barem, this.count, clicked);
@@ -41,7 +41,8 @@ Vue.component('barem-area', {
                     <input type="number" :min="min" class="w-16 border-gray-300 border-2 rounded-sm" v-model="count">
                     <span>Adet</span>
                 </div>
-                <span class="text-sm text-green-500">Stok Adedi: <b>{{max}}</b></span>
+                <span v-show="variant" class="text-sm text-green-500">Stok Adedi: <b>{{max}}</b></span>
+                <span v-show="!variant" class="text-sm text-red-500">Stok Adedi: <b>0</b></span>
             </div>
         </div>
     </div>
